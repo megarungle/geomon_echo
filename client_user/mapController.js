@@ -85,7 +85,6 @@ function mapInitialization()
 	  drawingManager.setDrawingMode(undefined);
 	});
 
-
 	document.getElementById("coordBtn").onclick = function() {
 		var coords = getCoordsFromServerBySomething();
 		for (var i = 0; i < coords.length; i++) {
@@ -94,6 +93,7 @@ function mapInitialization()
 				position: myLatLng,
 				map,
 				title: i.toString(),
+				icon: "pig_marker.png"
 			});
 			var infowindow = new google.maps.InfoWindow()
 			google.maps.event.addListener(marker, 'click', (function(marker, infowindow){ 
