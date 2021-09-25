@@ -1,8 +1,22 @@
-function startDrawing()
+function getCoordsFromServerBySomething() {
+	var allCoords = []
+	var coords = []
+	coords.push(56.29720095504402)
+	coords.push(43.97701409422293)
+	allCoords.push(coords)
+	var coords = []
+	coords.push(56.29662844536947)
+	coords.push(43.97598233985933)
+	allCoords.push(coords)
+	return allCoords
+}
+
+
+function mapInitialization()
 {	
 	var mapOptions = {
-	  zoom: 16,
-	  center: new google.maps.LatLng(62.1482, 6.0696),
+	  zoom: 13,
+	  center: new google.maps.LatLng(56.32255, 43.9831),
 	  mapTypeControl: false,
 	  streetViewControl: false
 	};
@@ -70,4 +84,24 @@ function startDrawing()
 	  }
 	  drawingManager.setDrawingMode(undefined);
 	});
+
+	
+	document.getElementById("coordBtn").onclick = function() {
+		var coords = getCoordsFromServerBySomething();
+		for (var i = 0; i < coords.length; i++) {
+			myLatLng = { lat: coords[i][0], lng: coords[i][1] };
+			marker = new google.maps.Marker({
+				position: myLatLng,
+				map,
+				title: i.toString(),
+			});
+			var infowindow = new google.maps.InfoWindow()
+			google.maps.event.addListener(marker, 'click', (function(marker, infowindow){ 
+				return function() {
+					infowindow.setContent("Abobus number " + marker.title);
+					infowindow.open(map, marker);
+				};
+			})(marker,infowindow));  
+		}
+	};
 }

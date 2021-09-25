@@ -10,15 +10,16 @@
 			width: 70%;
 		}
 	</style>
-	<script src="setArea.js"></script>
+	<script src="mapController.js"></script>
 	</head>
 	<body>
 		<input type="button" value="Рисовать" height="10px" width="40px" id="drawBtn">
+		<input type="button" value="Получить координаты" height="10px" width="40px" id="coordBtn">
 		<!--The div element for the map -->
 		<div id="map"></div>
 		<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 		<script
-		src="https://maps.googleapis.com/maps/api/js?key=API&callback=startDrawing&libraries=drawing"
+		src="https://maps.googleapis.com/maps/api/js?key=API&callback=mapInitialization&libraries=drawing"
 		async
 		></script>
 		<script src="https://cdn.rawgit.com/bjornharrtell/jsts/gh-pages/1.4.0/jsts.min.js"></script>
