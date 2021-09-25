@@ -10,16 +10,18 @@
 			width: 70%;
 		}
 	</style>
-	<script src="initMap.js"></script>
+	<script src="setArea.js"></script>
 	</head>
 	<body>
-		<h3>My Google Maps Demo</h3>
+		<input type="button" value="Рисовать" height="10px" width="40px" id="drawBtn">
 		<!--The div element for the map -->
 		<div id="map"></div>
 		<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 		<script
-		src="https://maps.googleapis.com/maps/api/js?key=API&callback=initGoogleMap&libraries=&v=weekly"
+		src="https://maps.googleapis.com/maps/api/js?key=API&callback=startDrawing&libraries=drawing"
 		async
 		></script>
-		</body>
+		<script src="https://cdn.rawgit.com/bjornharrtell/jsts/gh-pages/1.4.0/jsts.min.js"></script>
+		<!-- -->
+	</body>
 </html>
