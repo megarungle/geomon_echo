@@ -85,7 +85,7 @@ function mapInitialization()
 	  drawingManager.setDrawingMode(undefined);
 	});
 
-	
+
 	document.getElementById("coordBtn").onclick = function() {
 		var coords = getCoordsFromServerBySomething();
 		for (var i = 0; i < coords.length; i++) {
@@ -101,7 +101,7 @@ function mapInitialization()
 					infowindow.setContent("Abobus number " + marker.title);
 					infowindow.open(map, marker);
 				};
-			})(marker,infowindow));  
+			})(marker,infowindow));
 		}
 	};
 }
