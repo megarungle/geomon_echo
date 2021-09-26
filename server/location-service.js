@@ -13,20 +13,21 @@ const K = parseFloat(process.env.K) // константа (32.44, когда f �
 
 class LocationService {
 
-    static getTrackerCoodrinates(trackers, towers) {
+    static async getTrackerCoodrinates(trackers, towers) {
 
-        console.log(Math.pow(10, (((PTX + AGTX + AGRX - PRX - FM) - K - 20 * Math.log10(2442)) / 20)))
-
-        trackers.forEach((tracker) => {
+        let avg_points = new Map()
+        for (const tracker of trackers) {
             let tmpMap = new Map(Object.entries(tracker['signals']))
             let points = []
-            let count = tmpMap.size
+
             
-            tmpMap.forEach((val1, key1) => {
-                tmpMap.forEach((val2, key2) => {
+            for (const [key1, val1] of tmpMap) {
+                for (const [key2, val2] of tmpMap) {
                     if(val1 != val2) {
-                        let r1 = Math.pow(10, (((PTX + AGTX + AGRX - PRX - FM) - K - 20 * Math.log10(parseFloat(key1))) / 20))
-                        let r2 = Math.pow(10, (((PTX + AGTX + AGRX - PRX - FM) - K - 20 * Math.log10(parseFloat(key2))) / 20))
+                        // let r1 = await Math.pow(10, (((PTX + AGTX + AGRX - PRX - FM) - K - 20 * Math.log10(parseFloat(val1))) / 20))
+                        // let r2 = await Math.pow(10, (((PTX + AGTX + AGRX - PRX - FM) - K - 20 * Math.log10(parseFloat(val2))) / 20))
+                        let r1 = Math.sqrt(30.16) 
+                        let r2 = Math.sqrt(47.05)
                         let x1
                         let x2
                         let y1
@@ -41,15 +42,25 @@ class LocationService {
                                 y2 = tower['coorY']
                             }
                         })
-                        console.log(x1 + ' ' + y1 + ' ' + r1)
-                        console.log(x2 + ' ' + y2 + ' ' + r2)
-                        mmmagic(x1,y1,r1,x2,y2,r2)
+                        points = points.concat(mmmagic(x1,y1,r1,x2,y2,r2))
                     }
-                })
-            })
-            
-        });
+                }
+            }
+            let count = parseFloat(points.length)
+            let Xs = 0.0, Ys = 0.0
+            for (const point of points) {
+                Xs+=parseFloat(point.x)
+                Ys+=parseFloat(point.y)
+            }
+            avg_points.set( tracker['_id'], new Point(Xs / count, Ys / count))
+        }
+        return avg_points
     }
+}
+
+function Point(x, y) {
+    this.x = x
+    this.y = y
 }
 
 
