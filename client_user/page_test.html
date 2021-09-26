@@ -7,37 +7,45 @@
 		<style type="text/css">
 			#map
 			{
-				height: 900px;
+				height: 800px;
 				width: 100%;
 			}
 		</style>
 		<script src="mapController.js"></script>
 	</head>
 
-	<body class="d-flex h-100 text-center text-white bg-dark">
+	<body class="d-flex h-100 text-white bg-dark">
 		<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
 			<header class="mb-auto px-3">
 				<h3 class="float-md-start mb-0 ">Geomon ECHO</h3>
 			</header>
 
-			<div id="map"></div>
-
 			<main class="px-3">
-				<script
-					class="d-flex h-100 mb-auto px-3"
-					src="https://maps.googleapis.com/maps/api/js?key=API&callback=mapInitialization&libraries=drawing"
-					async></script>
-				<p class="lead">
-				  <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white" id="drawBtn">Draw</a>
-				  <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white" id="coordBtn">Get coordinates</a>
-				</p>
+				<div class="row">
+					<div class="col-12 col-md-10">
+						<div id="map" class="rounded"></div>
+						<script
+							src="https://maps.googleapis.com/maps/api/js?key=API&callback=mapInitialization&libraries=drawing"
+							async></script>
+					</div>
+					<div class="col-6 col-md-2">
+						<p class="lead">
+						  <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white" id="drawBtn">     Задать область      </a>
+						  <br></br>
+						  <br></br>
+						  <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white" id="coordBtn">Добавить устройство</a>
+						  <br></br>
+						  <input class="form-control me-2" type="text" name="tracker" placeholder="Введите id устройства"/>
+						</p>
+					</div>
+				</div>
 			</main>
 
 			<script src="https://cdn.rawgit.com/bjornharrtell/jsts/gh-pages/1.4.0/jsts.min.js"></script>
 
-			<footer class="mt-auto text-white-50">
-				<p><a href="https://github.com/megarungle/geomon_echo" class="text-white">@GeomonECHO</a>, by SOLT team.</p>
+			<footer class="mt-auto text-white-50 text-center">
+				<p><a href="https://github.com/megarungle/geomon_echo" class="text-white">@GeomonECHO</a>, by SOLT team, 2021.</p>
 			</footer>
 		</div>
 	</body>
