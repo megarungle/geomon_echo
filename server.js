@@ -12,6 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(trackerRouter)
 
 
+app.use(express.static('public'));
+
 const URI = process.env.DB_CONNECT;
 const PORT = process.env.PORT
 
