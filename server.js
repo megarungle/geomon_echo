@@ -12,6 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(trackerRouter)
 
 
+app.use(express.static('public'));
+
 const URI = process.env.DB_CONNECT;
 const PORT = process.env.PORT
 
@@ -150,11 +152,11 @@ app.post('/getTrackers', async (req, res) => {
     let trackersIds = await getField(colUsers, id, 'trackers')
     let trackers = await getAllTrackers(trackersIds)
     let towers = await getAllTowers()
-    LocationService.getTrackerCoodrinates(trackers, towers)
+    let result = await LocationService.getTrackerCoodrinates(trackers, towers)
+    res.status(200).json( Object.fromEntries(result))
 })
 
 process.on("SIGINT", () => {
     dbClient.close();
     process.exit();
 });
-

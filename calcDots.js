@@ -30,7 +30,7 @@ function rotatePoint(fp, pt, a) {
   var y = pt.y - fp.y;
   var xRot = x * Math.cos(a) + y * Math.sin(a);
   var yRot = y * Math.cos(a) - x * Math.sin(a);
-  return new Point(fp.x+xRot,fp.y+yRot);
+  return new Point((fp.x+xRot).toFixed(3),(fp.y+yRot).toFixed(3));
 }
 
 // Given two circles this method finds the intersection
@@ -80,14 +80,22 @@ function circleCircleIntersectionPoints(c1, c2) {
   var pt1 = rotatePoint(C, P, +angle);
   var pt2 = rotatePoint(C, P, -angle);
   return [pt1, pt2];
-
 }
 
 function mmmagic(x1,y1,r1,x2,y2,r2) {
     let c1 = new Circle(x1,y1,r1)
     let c2 = new Circle(x2,y2,r2)
-    // console.log(c1 + ' ' + c2)
-    return circleCircleIntersectionPoints(c1, c2)
+    let tmp = []
+    tmp = circleCircleIntersectionPoints(c1, c2)
+    return tmp
 }
 
 module.exports = {mmmagic}
+
+// let x1 = -7.45
+// let x2 = 2.71
+// let y1 = 2.76
+// let y2 = 5.77
+// let r1 = Math.sqrt(30.16)
+// let r2 = Math.sqrt(47.05)
+// mmmagic(x1,y1,r1,x2,y2,r2)
